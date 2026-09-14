@@ -26,11 +26,11 @@ describe('AuthService', () => {
   it('connecte un utilisateur avec des identifiants valides', async () => {
     const hashedPassword = await bcrypt.hash('password123', 10);
     (usersService.findByEmail as jest.Mock).mockResolvedValue({
-      id: '1', email: 'admin@wondershop.sn', password: hashedPassword,
-      role: 'ADMIN', fullName: 'Admin Wondershop',
+      id: '1', email: 'admin@phoneshop.sn', password: hashedPassword,
+      role: 'ADMIN', fullName: 'Admin PhoneShop',
     });
 
-    const result = await authService.login('admin@wondershop.sn', 'password123');
+    const result = await authService.login('admin@phoneshop.sn', 'password123');
 
     expect(result.access_token).toBe('fake-jwt-token');
     expect(result.user.role).toBe('ADMIN');
@@ -39,11 +39,11 @@ describe('AuthService', () => {
   it('rejette un mot de passe invalide', async () => {
     const hashedPassword = await bcrypt.hash('password123', 10);
     (usersService.findByEmail as jest.Mock).mockResolvedValue({
-      id: '1', email: 'admin@wondershop.sn', password: hashedPassword, role: 'ADMIN',
+      id: '1', email: 'admin@phoneshop.sn', password: hashedPassword, role: 'ADMIN',
     });
 
     await expect(
-      authService.login('admin@wondershop.sn', 'mauvais-mdp'),
+      authService.login('admin@phoneshop.sn', 'mauvais-mdp'),
     ).rejects.toThrow(UnauthorizedException);
   });
 
@@ -51,7 +51,7 @@ describe('AuthService', () => {
     (usersService.findByEmail as jest.Mock).mockResolvedValue(null);
 
     await expect(
-      authService.login('inconnu@wondershop.sn', 'password123'),
+      authService.login('inconnu@phoneshop.sn', 'password123'),
     ).rejects.toThrow(UnauthorizedException);
   });
 });

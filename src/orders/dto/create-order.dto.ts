@@ -1,14 +1,19 @@
 import { Type } from 'class-transformer';
 import {
-  ArrayNotEmpty, IsArray, IsInt, IsPositive, IsString, ValidateNested,
+  ArrayNotEmpty, IsArray, IsInt, IsOptional, IsPositive, IsString, ValidateNested,
 } from 'class-validator';
 
 class OrderItemInputDto {
   @IsString()
   productId: string;
 
+  @IsOptional()
   @IsString()
-  size: string;
+  storage?: string;
+
+  @IsOptional()
+  @IsString()
+  color?: string;
 
   @IsInt()
   @IsPositive()

@@ -18,8 +18,11 @@ export class OrderItem {
   @ManyToOne(() => Product)
   product: Product;
 
-  @Column()
-  size: string;
+  @Column({ nullable: true })
+  storage: string; // capacite choisie, ex: '256GB' (vide pour un accessoire)
+
+  @Column({ nullable: true })
+  color: string; // couleur choisie
 
   @Column({ default: 1 })
   quantity: number;

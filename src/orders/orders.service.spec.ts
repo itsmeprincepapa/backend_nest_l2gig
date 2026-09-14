@@ -19,7 +19,7 @@ describe('OrdersService', () => {
   };
   const mockOrderItemRepo = { create: jest.fn((d) => d) };
   const mockProductsService = {
-    findOne: jest.fn().mockResolvedValue({ id: 'p1', name: 'Costume', price: 10000, stock: 5 }),
+    findOne: jest.fn().mockResolvedValue({ id: 'p1', name: 'iPhone 13', price: 10000, stock: 5 }),
     decrementStock: jest.fn(),
   };
 
@@ -37,7 +37,7 @@ describe('OrdersService', () => {
   });
 
   it('calcule le total a partir du prix produit, pas du frontend', async () => {
-    const dto = { items: [{ productId: 'p1', size: 'M', quantity: 2 }] };
+    const dto = { items: [{ productId: 'p1', storage: '128GB', color: 'Noir', quantity: 2 }] };
     const order = await service.create('client1', dto as any);
     expect(order.totalAmount).toBe(20000); // 10000 * 2
   });

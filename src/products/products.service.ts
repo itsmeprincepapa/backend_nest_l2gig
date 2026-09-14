@@ -15,10 +15,13 @@ export class ProductsService {
   ) {}
 
   async findAll(query: QueryProductDto) {
-    const { category, search, page = 1, limit = 10 } = query;
+    const {
+      category, condition, search, page = 1, limit = 10,
+    } = query;
 
     const where: any = {};
     if (category) where.category = category;
+    if (condition) where.condition = condition;
     if (search) where.name = Like(`%${search}%`);
 
     const [items, total] = await this.productsRepository.findAndCount({

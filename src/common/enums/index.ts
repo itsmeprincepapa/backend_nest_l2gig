@@ -1,7 +1,11 @@
 export enum ProductCategory {
-  MEN = 'MEN',
-  WOMEN = 'WOMEN',
-  ACCESSORIES = 'ACCESSORIES',
+  IPHONE = 'IPHONE',
+  ACCESSOIRE = 'ACCESSOIRE',
+}
+
+export enum ProductCondition {
+  NEUF = 'NEUF',
+  RECONDITIONNE = 'RECONDITIONNE',
 }
 
 export enum ProductStatus {

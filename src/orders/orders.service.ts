@@ -39,7 +39,8 @@ export class OrdersService {
 
       const orderItem = this.orderItemsRepository.create({
         product,
-        size: itemDto.size,
+        storage: itemDto.storage,
+        color: itemDto.color,
         quantity: itemDto.quantity,
         unitPrice: product.price,
       });

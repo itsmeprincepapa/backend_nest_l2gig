@@ -27,16 +27,16 @@ describe('ProductsService', () => {
 
   it('filtre les produits par categorie', async () => {
     mockRepo.findAndCount.mockResolvedValue([[], 0]);
-    await service.findAll({ category: ProductCategory.MEN, page: 1, limit: 10 } as any);
+    await service.findAll({ category: ProductCategory.IPHONE, page: 1, limit: 10 } as any);
     expect(mockRepo.findAndCount).toHaveBeenCalledWith(
-      expect.objectContaining({ where: { category: ProductCategory.MEN } }),
+      expect.objectContaining({ where: { category: ProductCategory.IPHONE } }),
     );
   });
 
   it('passe le statut a RUPTURE quand le stock cree est a 0', async () => {
     const result = await service.create({
-      name: 'Costume', reference: 'REF001', category: ProductCategory.MEN,
-      price: 10000, sizes: ['M'], stock: 0,
+      name: 'iPhone 13', reference: 'REF001', model: 'iPhone 13', category: ProductCategory.IPHONE,
+      price: 350000, storageOptions: ['128GB'], stock: 0,
     } as any);
     expect(result.status).toBe(ProductStatus.RUPTURE);
   });

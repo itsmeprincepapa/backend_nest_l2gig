@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProductCategory, ProductStatus } from '../../common/enums';
+import { ProductCategory, ProductCondition, ProductStatus } from '../../common/enums';
 
 @Entity('products')
 export class Product {
@@ -21,14 +21,30 @@ export class Product {
   @Column({ type: 'text', nullable: true })
   description: string;
 
+  @Column({ default: 'Apple' })
+  brand: string;
+
+  @Column()
+  model: string; // ex: 'iPhone 15 Pro Max'
+
   @Column({ type: 'enum', enum: ProductCategory })
   category: ProductCategory;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @Column({ type: 'simple-array' })
-  sizes: string[]; // ex: ['S','M','L'] ou ['48','50','52']
+  @Column({ name: 'storage_options', type: 'simple-array', nullable: true })
+  storageOptions: string[]; // ex: ['64GB','128GB','256GB'] (vide pour un accessoire)
+
+  @Column({ type: 'simple-array', nullable: true })
+  colors: string[]; // ex: ['Noir', 'Titane naturel', 'Bleu']
+
+  @Column({
+    type: 'enum',
+    enum: ProductCondition,
+    default: ProductCondition.NEUF,
+  })
+  condition: ProductCondition;
 
   @Column({ default: 0 })
   stock: number;

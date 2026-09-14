@@ -19,7 +19,7 @@ export class Order {
   @Column({ name: 'order_number', unique: true })
   orderNumber: string; // ex: #001
 
-  @ManyToOne(() => User, (user) => user.orders)
+  @ManyToOne(() => User)
   client: User;
 
   @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
