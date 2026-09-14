@@ -23,13 +23,26 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Backend Nest.js du projet d'équipe **PhoneShop**. API basée sur le [Nest](https://github.com/nestjs/nest) framework TypeScript.
 
 ## Project setup
 
 ```bash
 $ npm install
 ```
+
+## Seed / comptes demo
+
+```bash
+$ npm run seed
+```
+
+Cree (si absents) les comptes de demonstration suivants :
+
+| Role   | Email                    | Mot de passe |
+|--------|---------------------------|--------------|
+| ADMIN  | admin@wondershop.sn       | Admin123!    |
+| CLIENT | client@wondershop.sn      | Client123!   |
 
 ## Compile and run the project
 
